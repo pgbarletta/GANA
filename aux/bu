@@ -1,0 +1,236 @@
+
+__global__ void naive_get_vol(float* grilla, int grilla_size,
+                float* molecule_points, float* vdw_radii, int natoms,
+                std::vector<int>& indices, int natoms_in_bbox,
+                float* grilla_void, int* grilla_void_size) {
+
+        const int nproc = gridDim.x * blockDim.x;
+        int i;
+        int ti = threadIdx.x + blockIdx.x * blockDim.x;
+
+        while (ti < grilla_size) {
+                const int xi = ti * 3;
+                const int yi = ti * 3 + 1;
+                const int zi = ti * 3 + 2;
+                float dist_x = grilla[ti] - molecule_points[xi];
+        }
+
+        return;
+}
+
+__global__ void getIndicesFromBoolArray (bool* in_array, const int n_in,
+                int *n_indices, std::vector<int>& indices) {
+        // blockDim = 1024 ; gridDim = 1
+        int i = threadIdx.x, j = 0;
+        int subtotal[64];
+        __shared__ int *total;
+        *total = 0;
+
+        while (i < n_in) {
+                if (in_array[i]) {
+                        subtotal[j] = i;
+                        ++j;
+                        atomicAdd(total, 1);
+                }
+                i += threadIdx.x;
+        }
+//      if (threadIdx.x == 0) {
+//              indices.reserve(*total);
+//      }
+
+        return;
+}
+
+
+///////////
+ass testeo {
+public:
+
+    int as_1 = 5;
+    char as_2 = 'c';
+    float as_3 = 2.0;
+};
+
+
+__global__ void tempo(testeo* Dhola);
+
+__global__ void tempa(float* Dxyz);
+
+__global__ void tempa(float* Dxyz) {
+        int ti = threadIdx.x + blockIdx.x * blockDim.x;
+
+        Dxyz[ti]  = Dxyz[ti] + 10.;
+
+        return;
+}
+
+__global__ void tempo(testeo* Dhola) {
+    int ti = threadIdx.x + blockIdx.x * blockDim.x;
+
+    Dhola->as_1  = Dhola->as_1 + 1;
+    Dhola->as_3  = Dhola->as_1 - 1.0;
+    Dhola->as_2  = 'h';
+
+    return;
+}
+
+    testeo hola, *Dhola;
+    cudaMalloc((void **) &Dhola, sizeof(testeo));
+    cudaMemcpy(Dhola, &hola, sizeof(testeo), cudaMemcpyHostToDevice);
+    tempo<<<dim3(1), dim3(1)>>>(Dhola);
+    cudaDeviceSynchronize();
+    std::cout << hola.as_1 << "  " << hola.as_2 << "  " << hola.as_3 << "  " << '\n';
+    cudaMemcpy(&hola, Dhola, sizeof(testeo), cudaMemcpyDeviceToHost);
+    std::cout << hola.as_1 << "  " << hola.as_2 << "  " << hola.as_3 << "  " << '\n';
+///////////
+
+    dim3 b(1024, 1, 1);
+    dim3 g(10, 1, 1);
+    temp<<<g, b>>>(Dprote);
+    cudaDeviceSynchronize();
+    std::cout << prote.xyz_[0] << "  " << prote.xyz_[1]<< "  " << prote.xyz_[2] << "  " << '\n';
+    GEC( cudaMemcpy(prote.xyz_, Dxyz, xyz_sz, cudaMemcpyDeviceToHost) );
+    std::cout << prote.xyz_[0] << "  " << prote.xyz_[1]<< "  " << prote.xyz_[2] << "  " << '\n';
+
+__global__ void temp(GANA::molecule *Dprote);
+
+__global__ void temp(GANA::molecule *Dprote) {
+
+    const int nproc = gridDim.x * blockDim.x;
+    int ti = threadIdx.x + blockIdx.x * blockDim.x;
+
+        while (ti < Dprote->natoms_) {
+            Dprote->xyz_[ti].x_ = Dprote->xyz_[ti].x_ + 10.0;
+            Dprote->xyz_[ti].y_ = Dprote->xyz_[ti].y_ + 10.0;
+            Dprote->xyz_[ti].z_ = Dprote->xyz_[ti].z_ + 10.0;
+            ti = ti + nproc;
+        }
+
+    return;
+}
+
+///////////////////////////////////////////////
+//  // Get the CH triangles.
+//  float* CH;
+//  cudaMallocManaged((void**) &CH, sizeof(float) * 3 * 3 * 12);
+//  // Triangle 0
+//  CH[0] = x_min;
+//  CH[1] = y_min;
+//  CH[2] = z_min;
+//  CH[3] = x_max;
+//  CH[4] = y_min;
+//  CH[5] = z_min;
+//  CH[6] = x_min;
+//  CH[7] = y_max;
+//  CH[8] = z_min;
+//  // Triangle 1
+//  CH[9] = x_max;
+//  CH[10] = y_max;
+//  CH[11] = z_min;
+//  CH[12] = x_max;
+//  CH[13] = y_min;
+//  CH[14] = z_min;
+//  CH[15] = x_min;
+//  CH[16] = y_max;
+//  CH[17] = z_min;
+//  // Triangle 2
+//  CH[18] = x_min;
+//  CH[19] = y_min;
+//  CH[20] = z_max;
+//  CH[21] = x_max;
+//  CH[22] = y_min;
+//  CH[23] = z_max;
+//  CH[24] = x_min;
+//  CH[25] = y_max;
+//  CH[26] = z_max;
+//  // Triangle 3
+//  CH[27] = x_max;
+//  CH[28] = y_max;
+//  CH[29] = z_max;
+//  CH[30] = x_max;
+//  CH[31] = y_min;
+//  CH[32] = z_max;
+//  CH[33] = x_min;
+//  CH[34] = y_max;
+//  CH[35] = z_max;
+//  // Triangle 4
+//  CH[36] = x_min;
+//  CH[37] = y_min;
+//  CH[38] = z_min;
+//  CH[39] = x_min;
+//  CH[40] = y_min;
+//  CH[41] = z_max;
+//  CH[42] = x_min;
+//  CH[43] = y_max;
+//  CH[44] = z_min;
+//  // Triangle 5
+//  CH[45] = x_min;
+//  CH[46] = y_max;
+//  CH[47] = z_max;
+//  CH[48] = x_min;
+//  CH[49] = y_min;
+//  CH[50] = z_max;
+//  CH[51] = x_min;
+//  CH[52] = y_max;
+//  CH[53] = z_min;
+//  // Triangle 6
+//  CH[54] = x_max;
+//  CH[55] = y_min;
+//  CH[56] = z_min;
+//  CH[57] = x_max;
+//  CH[58] = y_min;
+//  CH[59] = z_max;
+//  CH[60] = x_max;
+//  CH[61] = y_max;
+//  CH[62] = z_min;
+//  // Triangle 7
+//  CH[63] = x_max;
+//  CH[64] = y_max;
+//  CH[65] = z_max;
+//  CH[66] = x_max;
+//  CH[67] = y_min;
+//  CH[68] = z_max;
+//  CH[69] = x_max;
+//  CH[70] = y_max;
+//  CH[71] = z_min;
+//  // Triangle 8
+//  CH[72] = x_min;
+//  CH[73] = y_min;
+//  CH[74] = z_min;
+//  CH[75] = x_max;
+//  CH[76] = y_min;
+//  CH[77] = z_min;
+//  CH[78] = x_min;
+//  CH[79] = y_min;
+//  CH[80] = z_max;
+//  // Triangle 9
+//  CH[81] = x_max;
+//  CH[82] = y_min;
+//  CH[83] = z_max;
+//  CH[84] = x_max;
+//  CH[85] = y_min;
+//  CH[86] = z_min;
+//  CH[87] = x_min;
+//  CH[88] = y_min;
+//  CH[89] = z_max;
+//  // Triangle 10
+//  CH[90] = x_min;
+//  CH[91] = y_max;
+//  CH[92] = z_min;
+//  CH[93] = x_max;
+//  CH[94] = y_max;
+//  CH[95] = z_min;
+//  CH[96] = x_min;
+//  CH[97] = y_max;
+//  CH[98] = z_max;
+//  // Triangle 11
+//  CH[99] = x_max;
+//  CH[100] = y_max;
+//  CH[101] = z_max;
+//  CH[102] = x_max;
+//  CH[103] = y_max;
+//  CH[104] = z_min;
+//  CH[105] = x_min;
+//  CH[106] = y_max;
+//  CH[107] = z_max;
+///////////////////////////////////////////////////
