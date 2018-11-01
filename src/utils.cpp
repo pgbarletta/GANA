@@ -2,7 +2,8 @@
 namespace GANA {
 
 // Helper function for getting the indices that sort a vector.
-template<typename T> std::vector<unsigned int> sort_indices(
+template<typename T>
+std::vector<unsigned int> sort_indices(
 	const std::vector<T> &v) {
 	// initialize original index locations
 	std::vector<unsigned int> idx(v.size());
@@ -17,7 +18,7 @@ template<typename T> std::vector<unsigned int> sort_indices(
 
 // Helper function to get the indices of the true elements of a bool array.
 // Optimized for large (>500) and sparse bool arrays.
-void getIndicesFromSparseBoolArray(
+void get_indices_from_sparse_bool_array(
 	bool *in_array, const int n_in, std::vector<int> &indices) {
 
 	auto sz_lo = sizeof(long);

@@ -13,19 +13,19 @@ extern float rsltion;
 
 namespace GANA {
 
-    class Grid_point {
+    class GridPoint {
     public:
         using grid_idx_t = int32_t;
 
-        Grid_point() = default;
+        GridPoint() = default;
 
-        Grid_point(const grid_idx_t x, const grid_idx_t y, const grid_idx_t z)
+        GridPoint(const grid_idx_t x, const grid_idx_t y, const grid_idx_t z)
             noexcept : _xyz{x, y, z} {}
 
-        Grid_point(const point &p) noexcept :
+        GridPoint(const Point &p) noexcept :
             _xyz{cont_to_grid(p[0]), cont_to_grid(p[1]), cont_to_grid(p[2])} {}
 
-        // Draw Grid_point as atom.
+        // Draw GridPoint as atom.
         void draw(FILE *ou_fil, unsigned int idx, unsigned int resid);
 
         // // Returns a vector starting on this point coordinates.
@@ -45,19 +45,19 @@ namespace GANA {
     private:
         grid_idx_t _xyz[3];
     };
-    std::ostream& operator<<(std::ostream &stream, const Grid_point& t);
+    std::ostream& operator<<(std::ostream &stream, const GridPoint& t);
     // Turn a grid point into a continuous point, given the resolution.
-    point Grid_point_to_point(const Grid_point &in_point);
+    Point GridPoint_to_point(const GridPoint &in_point);
 
     // Turn a grid point into a continuous point, given the resolution.
-    Grid_point point_to_Grid_point(const point &in_point);
+    GridPoint point_to_GridPoint(const Point &in_point);
 
-    class Grid_molecule {
+    class GridMolecule {
     public:
-        Grid_molecule() = default;
-        Grid_molecule(const molecule &in_filename, const point &orig_point);
+        GridMolecule() = default;
+        GridMolecule(const Molecule &in_mol, const Point &orig_point);
 
-        ~Grid_molecule() {
+        ~GridMolecule() {
             free(_xyz);
             free(_in_xyz);
             free(_radii);
@@ -67,17 +67,17 @@ namespace GANA {
         void draw(const std::string &ou_fil);
 
         unsigned int _natoms;
-        vector _orig_vtor;
-        Grid_point *_xyz, *_in_xyz;
+        Vector _orig_vtor;
+        GridPoint *_xyz, *_in_xyz;
         float *_radii, *_in_radii;
     };
 
-    class Grid_convex_hull {
+    class GridConvexHull {
     public:
-        Grid_convex_hull() = default;
-        Grid_convex_hull(const convex_hull& CH);
+        GridConvexHull() = default;
+        GridConvexHull(const ConvexHull& CH);
 
-        ~Grid_convex_hull() {
+        ~GridConvexHull() {
             free(dots);
         }
 
@@ -86,10 +86,10 @@ namespace GANA {
         float *dots;
     };
 
-    class Grid_bool {
+    class GridBool {
     public:
-        Grid_bool() = default;
-        Grid_bool(const convex_hull& CH);
+        GridBool() = default;
+        GridBool(const ConvexHull& CH);
 
     };
 } //namespace GANA

@@ -5,19 +5,18 @@ using Delaunay = CGAL::Delaunay_triangulation_3<EPIC>;
 using Finite_cells_iterator = Delaunay::Finite_cells_iterator;
 #include <cuda.h>
 #include <cuda_runtime.h>
-#include <GANA/helper_cuda.h>
 
 namespace GANA {
 
-molecule::molecule(const std::string &in_filename) {
+Molecule::Molecule(const std::string &in_filename) {
 	chemfiles::Trajectory in_trj(in_filename);
 	auto in_frm = in_trj.read();
 	auto in_top = in_frm.topology();
 	auto in_xyz = in_frm.positions();
 	_natoms = in_xyz.size();
 
-	_xyz = (point*) malloc(sizeof(point) * _natoms * 3);
-	_in_xyz = (point*) malloc(sizeof(point) * _natoms * 3);
+	_xyz = (Point*) malloc(sizeof(Point) * _natoms * 3);
+	_in_xyz = (Point*) malloc(sizeof(Point) * _natoms * 3);
 	_radii = (float*) malloc(sizeof(float) * _natoms);
 	_in_radii = (float*) malloc(sizeof(float) * _natoms);
 
@@ -26,7 +25,7 @@ molecule::molecule(const std::string &in_filename) {
 	for (const auto &residuo : in_top.residues()) {
 		for (const auto &i : residuo) {
 			const auto atom = in_xyz[i];
-			_xyz[i] = point(atom[0], atom[1], atom[2]);
+			_xyz[i] = Point(atom[0], atom[1], atom[2]);
 			_radii[j] = in_top[i].vdw_radius().value_or(1.5);
 			++j;
 		}
@@ -34,7 +33,7 @@ molecule::molecule(const std::string &in_filename) {
 }
 
 // Draw the molecule in the **out_file** path in PDB format.
-void molecule::draw(const std::string &out_file) {
+void Molecule::draw(const std::string &out_file) {
 	
 	FILE *file = std::fopen(out_file.c_str(), "w");
 	if(file) {
@@ -49,7 +48,7 @@ void molecule::draw(const std::string &out_file) {
 }
 
 // Draw triangle.
-void triangle::draw(FILE *out_file, unsigned int start_idx, unsigned int resid) {
+void Triangle::draw(FILE *out_file, unsigned int start_idx, unsigned int resid) {
 	const auto i = start_idx++;
 	const auto j = start_idx++;
 	const auto k = start_idx;
@@ -64,7 +63,7 @@ void triangle::draw(FILE *out_file, unsigned int start_idx, unsigned int resid) 
 }
 
 // Draw tetrahedron.
-void tetrahedron::draw (FILE *out_file, unsigned int start_idx, unsigned int resid) {
+void Tetrahedron::draw (FILE *out_file, unsigned int start_idx, unsigned int resid) {
 	const auto i = start_idx++;
 	const auto j = start_idx++;
 	const auto k = start_idx++;
@@ -83,7 +82,7 @@ void tetrahedron::draw (FILE *out_file, unsigned int start_idx, unsigned int res
 }
 
 // Draw cube.
-void cube::draw(FILE *out_file, unsigned int start_idx, unsigned int resid) {
+void Cube::draw(FILE *out_file, unsigned int start_idx, unsigned int resid) {
 	const auto i = start_idx++;
 	const auto j = start_idx++;
 	const auto k = start_idx++;
@@ -111,8 +110,8 @@ void cube::draw(FILE *out_file, unsigned int start_idx, unsigned int resid) {
 }
 
 // Draw prism. Can't draw connectivity properly if the prism wasn't constructed
-// with proper point ordering. SO this class is kind of useless.
-void prism::draw(FILE *out_file, unsigned int start_idx, unsigned int resid) {
+// with proper Point ordering. SO this class is kind of useless.
+void Prism::draw(FILE *out_file, unsigned int start_idx, unsigned int resid) {
 	const auto i = start_idx++;
 	const auto j = start_idx++;
 	const auto k = start_idx++;
@@ -140,11 +139,11 @@ void prism::draw(FILE *out_file, unsigned int start_idx, unsigned int resid) {
 }
 
 
-convex_hull::convex_hull(
-	const molecule &prote, const std::vector<unsigned int> &indices) {
+ConvexHull::ConvexHull(
+	const Molecule &prote, const std::vector<unsigned int> &indices) {
 
 	// Get the coordinates of the input indices atoms.
-	std::vector<Point> point_set;
+	std::vector<Point_3> point_set;
 	get_point_set(prote, indices, point_set);
 	
 	// Get the convex hull.
@@ -155,17 +154,17 @@ convex_hull::convex_hull(
 	P_Facet_const_iterator f_ite = con_hul.facets_begin();
 	const P_Facet_const_iterator f_end = con_hul.facets_end();
 	_ntriangles = std::distance(f_ite, f_end);
-	_triangles = (triangle *) malloc(sizeof(triangle) * _ntriangles);
+	_triangles = (Triangle *) malloc(sizeof(Triangle) * _ntriangles);
 
 	for (size_t i = 0 ; f_ite != f_end ; ++f_ite) {
 	    P_Halfedge_around_facet_const_circulator he_ite = f_ite->facet_begin();
-		_triangles[i] = triangle(he_ite->vertex()->point(),
+		_triangles[i] = Triangle(he_ite->vertex()->point(),
 		(he_ite++)->vertex()->point(), (he_ite++)->vertex()->point());
 		++i;
 	}
 }
 
-void convex_hull::draw(const std::string &out_file) {
+void ConvexHull::draw(const std::string &out_file) {
 	
 	FILE *file = std::fopen(out_file.c_str(), "w");
 	if(file) {
@@ -187,11 +186,11 @@ void convex_hull::draw(const std::string &out_file) {
 	return;
 }
 
-triangulation::triangulation(
-	const molecule &prote, const std::vector<unsigned int> &indices) {
+Triangulation::Triangulation(
+	Molecule const &prote, std::vector<unsigned int> const &indices) {
 
 	// Get the coordinates of the input indices atoms.
-	std::vector<Point> point_set;
+	std::vector<Point_3> point_set;
 	get_point_set(prote, indices, point_set);
 	
 	// Get the convex hull.
@@ -206,12 +205,12 @@ triangulation::triangulation(
 	const auto cell_end = T.finite_cells_end();
 
 	_ntetrahedrons = std::distance(cell_ite, cell_end);
-	const int sz_t = sizeof(tetrahedron) * _ntetrahedrons;
-	const int sz_c = sizeof(cube) * _ntetrahedrons;
+	const int sz_t = sizeof(Tetrahedron) * _ntetrahedrons;
+	const int sz_c = sizeof(Cube) * _ntetrahedrons;
 
-	_tetrahedrons = (tetrahedron *) malloc(sz_t);
+	_tetrahedrons = (Tetrahedron *) malloc(sz_t);
 	cudaMalloc((void **)&_Dtetrahedrons, sz_t);
-	_bboxes = (cube *) malloc(sz_c);
+	_bboxes = (Cube *) malloc(sz_c);
 	cudaMalloc((void **)&_Dbboxes, sz_c);
 
 	// // Initialize bounding box.
@@ -228,14 +227,14 @@ triangulation::triangulation(
 		const auto p2 = cell_ite->vertex(2)->point();
 		const auto p3 = cell_ite->vertex(3)->point();
 		cell_ite++;
-        _tetrahedrons[i] = tetrahedron(p0, p1, p2, p3);
+        _tetrahedrons[i] = Tetrahedron(p0, p1, p2, p3);
 	}
 	cudaMemcpyAsync(_Dtetrahedrons, _tetrahedrons, sz_t, cudaMemcpyHostToDevice);
 
 	return;
 }
 
-void triangulation::draw(const std::string &out_file) {
+void Triangulation::draw(const std::string &out_file) {
 	
 	FILE *file = std::fopen(out_file.c_str(), "w");
 	if(file) {
@@ -263,7 +262,7 @@ void triangulation::draw(const std::string &out_file) {
 	return;
 }
 
-Bounding_box::Bounding_box(tetrahedron const &in_T) noexcept {
+BoundingBox::BoundingBox(Tetrahedron const &in_T) noexcept {
 	 //in_T._p0.
 
 

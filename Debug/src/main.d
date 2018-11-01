@@ -221,7 +221,7 @@ src/main.o : ../src/main.cu \
     /usr/include/asm-generic/errno.h \
     /usr/include/asm-generic/errno-base.h \
     /usr/include/c++/7/bits/basic_string.tcc \
-    /home/pbarletta/labo/18/cuGANA/include/GANA/utils.hpp \
+    /home/pbarletta/labo/18/GANA/include/GANA/utils.hpp \
     /usr/include/c++/7/algorithm \
     /usr/include/c++/7/utility \
     /usr/include/c++/7/bits/stl_relops.h \
@@ -807,7 +807,7 @@ src/main.o : ../src/main.cu \
     /usr/local/cuda-10.0/bin/../targets/x86_64-linux/include/thrust/detail/device_vector.inl \
     /usr/local/cuda-10.0/bin/../targets/x86_64-linux/include/thrust/host_vector.h \
     /usr/local/cuda-10.0/bin/../targets/x86_64-linux/include/thrust/detail/host_vector.inl \
-    /home/pbarletta/labo/18/cuGANA/include/GANA/continuous.hpp \
+    /home/pbarletta/labo/18/GANA/include/GANA/continuous.hpp \
     /usr/include/c++/7/fstream \
     /usr/include/c++/7/bits/codecvt.h \
     /usr/include/x86_64-linux-gnu/c++/7/bits/basic_file.h \
@@ -2396,33 +2396,33 @@ src/main.o : ../src/main.cu \
     /usr/include/CGAL/boost/graph/graph_traits_Triangulation_data_structure_2.h \
     /usr/include/boost/iterator_adaptors.hpp \
     /usr/include/CGAL/convexity_check_3.h \
-    /home/pbarletta/labo/18/cuGANA/chemfiles/build/install/include/chemfiles.hpp \
-    /home/pbarletta/labo/18/cuGANA/chemfiles/build/install/include/chemfiles/config.hpp \
-    /home/pbarletta/labo/18/cuGANA/chemfiles/build/install/include/chemfiles/exports.hpp \
-    /home/pbarletta/labo/18/cuGANA/chemfiles/build/install/include/chemfiles/generic.hpp \
-    /home/pbarletta/labo/18/cuGANA/chemfiles/build/install/include/chemfiles/Error.hpp \
-    /home/pbarletta/labo/18/cuGANA/chemfiles/build/install/include/chemfiles/Property.hpp \
+    /home/pbarletta/chemfiles08/build/install/include/chemfiles.hpp \
+    /home/pbarletta/chemfiles08/build/install/include/chemfiles/config.hpp \
+    /home/pbarletta/chemfiles08/build/install/include/chemfiles/exports.hpp \
+    /home/pbarletta/chemfiles08/build/install/include/chemfiles/generic.hpp \
+    /home/pbarletta/chemfiles08/build/install/include/chemfiles/Error.hpp \
+    /home/pbarletta/chemfiles08/build/install/include/chemfiles/Property.hpp \
     /usr/include/c++/7/unordered_map \
     /usr/include/c++/7/bits/hashtable.h \
     /usr/include/c++/7/bits/hashtable_policy.h \
     /usr/include/c++/7/bits/unordered_map.h \
-    /home/pbarletta/labo/18/cuGANA/chemfiles/build/install/include/chemfiles/types.hpp \
-    /home/pbarletta/labo/18/cuGANA/chemfiles/build/install/include/chemfiles/unreachable.hpp \
-    /home/pbarletta/labo/18/cuGANA/chemfiles/build/install/include/chemfiles/external/optional.hpp \
-    /home/pbarletta/labo/18/cuGANA/chemfiles/build/install/include/chemfiles/Atom.hpp \
-    /home/pbarletta/labo/18/cuGANA/chemfiles/build/install/include/chemfiles/Frame.hpp \
-    /home/pbarletta/labo/18/cuGANA/chemfiles/build/install/include/chemfiles/external/span.hpp \
-    /home/pbarletta/labo/18/cuGANA/chemfiles/build/install/include/chemfiles/Topology.hpp \
-    /home/pbarletta/labo/18/cuGANA/chemfiles/build/install/include/chemfiles/Connectivity.hpp \
-    /home/pbarletta/labo/18/cuGANA/chemfiles/build/install/include/chemfiles/sorted_set.hpp \
-    /home/pbarletta/labo/18/cuGANA/chemfiles/build/install/include/chemfiles/Residue.hpp \
-    /home/pbarletta/labo/18/cuGANA/chemfiles/build/install/include/chemfiles/UnitCell.hpp \
-    /home/pbarletta/labo/18/cuGANA/chemfiles/build/install/include/chemfiles/Trajectory.hpp \
-    /home/pbarletta/labo/18/cuGANA/chemfiles/build/install/include/chemfiles/Selections.hpp \
-    /home/pbarletta/labo/18/cuGANA/fmt/include/fmt/format.h \
-    /home/pbarletta/labo/18/cuGANA/fmt/include/fmt/core.h \
+    /home/pbarletta/chemfiles08/build/install/include/chemfiles/types.hpp \
+    /home/pbarletta/chemfiles08/build/install/include/chemfiles/unreachable.hpp \
+    /home/pbarletta/chemfiles08/build/install/include/chemfiles/external/optional.hpp \
+    /home/pbarletta/chemfiles08/build/install/include/chemfiles/Atom.hpp \
+    /home/pbarletta/chemfiles08/build/install/include/chemfiles/Frame.hpp \
+    /home/pbarletta/chemfiles08/build/install/include/chemfiles/external/span.hpp \
+    /home/pbarletta/chemfiles08/build/install/include/chemfiles/Topology.hpp \
+    /home/pbarletta/chemfiles08/build/install/include/chemfiles/Connectivity.hpp \
+    /home/pbarletta/chemfiles08/build/install/include/chemfiles/sorted_set.hpp \
+    /home/pbarletta/chemfiles08/build/install/include/chemfiles/Residue.hpp \
+    /home/pbarletta/chemfiles08/build/install/include/chemfiles/UnitCell.hpp \
+    /home/pbarletta/chemfiles08/build/install/include/chemfiles/Trajectory.hpp \
+    /home/pbarletta/chemfiles08/build/install/include/chemfiles/Selections.hpp \
+    /usr/local/fmt-5.2.1/include/fmt/format.h \
+    /usr/local/fmt-5.2.1/include/fmt/core.h \
     /usr/include/c++/7/experimental/string_view \
     /usr/include/c++/7/experimental/bits/lfts_config.h \
     /usr/include/c++/7/experimental/bits/string_view.tcc \
-    /home/pbarletta/labo/18/cuGANA/include/GANA/grid.hpp \
-    /home/pbarletta/labo/18/cuGANA/include/GANA/kernels.cu
+    /home/pbarletta/labo/18/GANA/include/GANA/grid.hpp \
+    /home/pbarletta/labo/18/GANA/include/GANA/kernels.cu

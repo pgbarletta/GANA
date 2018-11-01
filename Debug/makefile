@@ -52,19 +52,19 @@ endif
 # Add inputs and outputs from these tool invocations to the build variables 
 
 # All Target
-all: cuGANA
+all: GANA
 
 # Tool invocations
-cuGANA: $(OBJS) $(USER_OBJS)
+GANA: $(OBJS) $(USER_OBJS)
 	@echo 'Building target: $@'
 	@echo 'Invoking: NVCC Linker'
-	/usr/local/cuda-10.0/bin/nvcc --cudart static -L/home/pbarletta/labo/18/cuGANA/fmt/build -L/home/pbarletta/labo/18/cuGANA/chemfiles/build/install/lib --relocatable-device-code=false -gencode arch=compute_61,code=compute_61 -gencode arch=compute_61,code=sm_61 -link -o  "cuGANA" $(OBJS) $(USER_OBJS) $(LIBS)
+	/usr/local/cuda-10.0/bin/nvcc --cudart static -L/home/pbarletta/chemfiles08/build/install/lib -L/usr/local/fmt-5.2.1/build --relocatable-device-code=false -gencode arch=compute_61,code=compute_61 -gencode arch=compute_61,code=sm_61 -m64 -link -o  "GANA" $(OBJS) $(USER_OBJS) $(LIBS)
 	@echo 'Finished building target: $@'
 	@echo ' '
 
 # Other Targets
 clean:
-	-$(RM) $(CC_DEPS)$(C++_DEPS)$(EXECUTABLES)$(C_UPPER_DEPS)$(CXX_DEPS)$(OBJS)$(CU_DEPS)$(CPP_DEPS)$(C_DEPS) cuGANA
+	-$(RM) $(CC_DEPS)$(C++_DEPS)$(EXECUTABLES)$(C_UPPER_DEPS)$(CXX_DEPS)$(OBJS)$(CU_DEPS)$(CPP_DEPS)$(C_DEPS) GANA
 	-@echo ' '
 
 .PHONY: all clean dependents

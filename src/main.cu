@@ -12,16 +12,6 @@ float rsltion = .1;
 #include "GANA/grid.hpp"
 #include "GANA/kernels.cu"
 
-inline void gpuAssert(cudaError_t code, const char *file, int line, bool abort=true)
-{
-   if (code != cudaSuccess)
-   {
-      fprintf(stderr,"GPUassert: %s %s %d\n", cudaGetErrorString(code), file, line);
-      if (abort) exit(code);
-   }
-}
-#define GEC(ans) { gpuAssert((ans), __FILE__, __LINE__); } // GPU Error Check
-
 int main(int argc, char **argv) {
 	// Get positions and associated variables ready.
 	if (argc != 4) {
@@ -34,21 +24,21 @@ int main(int argc, char **argv) {
 	///////////
 
 	try {
-		rsltion = std::stof(argv[2]);
+		rsltion = std::stof(argv[1]);
 	} catch(...) {
 		std::cerr << "Bad input resolution. Please specify a "
 			<< "number between .01 and 1" << '\n';
 	}
 
 	/////////////////////////
-	GANA::molecule prote(argv[1]), *Dprote;
+	GANA::Molecule prote(argv[2]), *Dprote;
 	// Paso molécula a GPU. Falta pasar los arrays.
-	GEC( cudaMalloc((void **) &Dprote, sizeof(GANA::molecule)) );
-	GEC( cudaMemcpyAsync(Dprote, &prote, sizeof(GANA::molecule), cudaMemcpyHostToDevice) );
+	GEC( cudaMalloc((void **) &Dprote, sizeof(GANA::Molecule)) );
+	GEC( cudaMemcpyAsync(Dprote, &prote, sizeof(GANA::Molecule), cudaMemcpyHostToDevice) );
 
 	// Paso los arrays.
 	float *Dradii, *Din_radii;
-	GANA::point *Dxyz, *Din_xyz;
+	GANA::Point *Dxyz, *Din_xyz;
 	const auto xyz_sz = sizeof(float) * prote._natoms * 3,
 		rad_sz = sizeof(float) * prote._natoms;
 	GEC( cudaMalloc((void **) &Dxyz, xyz_sz) );
@@ -61,9 +51,9 @@ int main(int argc, char **argv) {
 	GEC( cudaMemcpyAsync(Din_radii, prote._in_radii, rad_sz, cudaMemcpyHostToDevice) );
 
 	// Apunto los pointers de la molécula (en GPU) a los arrays (en GPU).
-	GEC( cudaMemcpyAsync(&(Dprote->_xyz), &Dxyz, sizeof(GANA::point *),
+	GEC( cudaMemcpyAsync(&(Dprote->_xyz), &Dxyz, sizeof(GANA::Point *),
 		cudaMemcpyHostToDevice) );
-	GEC( cudaMemcpyAsync(&(Dprote->_in_xyz), &Din_xyz, sizeof(GANA::point *),
+	GEC( cudaMemcpyAsync(&(Dprote->_in_xyz), &Din_xyz, sizeof(GANA::Point *),
 		cudaMemcpyHostToDevice) );
 	GEC( cudaMemcpyAsync(&(Dprote->_radii), &Dradii, sizeof(float *),
 		cudaMemcpyHostToDevice) );
@@ -71,7 +61,7 @@ int main(int argc, char **argv) {
 		cudaMemcpyHostToDevice) );
 	/////////////////////////
 
-	GANA::triangulation incl_area(prote, indices);
+	GANA::Triangulation incl_area(prote, indices);
 	incl_area.draw("aux/ia.pdb");
 
 	const dim3 dB0(1024, 1, 1);
@@ -79,7 +69,7 @@ int main(int argc, char **argv) {
 	empiezo<<<dG0, dB0>>>(incl_area._Dtetrahedrons, incl_area._ntetrahedrons);
 	cudaDeviceSynchronize();
 	cudaMemcpy(incl_area._tetrahedrons, incl_area._Dtetrahedrons,
-			sizeof(GANA::tetrahedron) * incl_area._ntetrahedrons, cudaMemcpyDeviceToHost);
+			sizeof(GANA::Tetrahedron) * incl_area._ntetrahedrons, cudaMemcpyDeviceToHost);
 
 	incl_area.draw("aux/after.pdb");
 

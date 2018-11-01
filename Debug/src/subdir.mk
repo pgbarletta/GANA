@@ -30,16 +30,16 @@ CPP_DEPS += \
 src/%.o: ../src/%.cpp
 	@echo 'Building file: $<'
 	@echo 'Invoking: NVCC Compiler'
-	/usr/local/cuda-10.0/bin/nvcc -I/home/pbarletta/labo/18/cuGANA/include -I/home/pbarletta/labo/18/cuGANA/chemfiles/build/install/include -I/home/pbarletta/labo/18/cuGANA/fmt/include -G -g -O0 -gencode arch=compute_61,code=sm_61  -odir "src" -M -o "$(@:%.o=%.d)" "$<"
-	/usr/local/cuda-10.0/bin/nvcc -I/home/pbarletta/labo/18/cuGANA/include -I/home/pbarletta/labo/18/cuGANA/chemfiles/build/install/include -I/home/pbarletta/labo/18/cuGANA/fmt/include -G -g -O0 --compile  -x c++ -o  "$@" "$<"
+	/usr/local/cuda-10.0/bin/nvcc -I/home/pbarletta/labo/18/GANA/include -I/home/pbarletta/chemfiles08/build/install/include -I/usr/local/fmt-5.2.1/include -G -g -O0 -gencode arch=compute_61,code=sm_61 -m64 -odir "src" -M -o "$(@:%.o=%.d)" "$<"
+	/usr/local/cuda-10.0/bin/nvcc -I/home/pbarletta/labo/18/GANA/include -I/home/pbarletta/chemfiles08/build/install/include -I/usr/local/fmt-5.2.1/include -G -g -O0 --compile -m64  -x c++ -o  "$@" "$<"
 	@echo 'Finished building: $<'
 	@echo ' '
 
 src/%.o: ../src/%.cu
 	@echo 'Building file: $<'
 	@echo 'Invoking: NVCC Compiler'
-	/usr/local/cuda-10.0/bin/nvcc -I/home/pbarletta/labo/18/cuGANA/include -I/home/pbarletta/labo/18/cuGANA/chemfiles/build/install/include -I/home/pbarletta/labo/18/cuGANA/fmt/include -G -g -O0 -gencode arch=compute_61,code=sm_61  -odir "src" -M -o "$(@:%.o=%.d)" "$<"
-	/usr/local/cuda-10.0/bin/nvcc -I/home/pbarletta/labo/18/cuGANA/include -I/home/pbarletta/labo/18/cuGANA/chemfiles/build/install/include -I/home/pbarletta/labo/18/cuGANA/fmt/include -G -g -O0 --compile --relocatable-device-code=false -gencode arch=compute_61,code=compute_61 -gencode arch=compute_61,code=sm_61  -x cu -o  "$@" "$<"
+	/usr/local/cuda-10.0/bin/nvcc -I/home/pbarletta/labo/18/GANA/include -I/home/pbarletta/chemfiles08/build/install/include -I/usr/local/fmt-5.2.1/include -G -g -O0 -gencode arch=compute_61,code=sm_61 -m64 -odir "src" -M -o "$(@:%.o=%.d)" "$<"
+	/usr/local/cuda-10.0/bin/nvcc -I/home/pbarletta/labo/18/GANA/include -I/home/pbarletta/chemfiles08/build/install/include -I/usr/local/fmt-5.2.1/include -G -g -O0 --compile --relocatable-device-code=false -gencode arch=compute_61,code=compute_61 -gencode arch=compute_61,code=sm_61 -m64  -x cu -o  "$@" "$<"
 	@echo 'Finished building: $<'
 	@echo ' '
 

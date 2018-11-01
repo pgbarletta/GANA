@@ -1,7 +1,19 @@
 #ifndef GANA_KERNELS_H
 #define GANA_KERNELS_H
 
-__global__ void empiezo(GANA::tetrahedron *in_IA, unsigned int n) {
+inline void gpuAssert(cudaError_t code, const char *file, int line, bool abort=true)
+{
+   if (code != cudaSuccess)
+   {
+      fprintf(stderr,"GPUassert: %s %s %d\n", cudaGetErrorString(code), file, line);
+      if (abort) exit(code);
+   }
+}
+#define GEC(ans) { gpuAssert((ans), __FILE__, __LINE__); } // GPU Error Check
+
+
+// Kernels
+__global__ void empiezo(GANA::Tetrahedron *in_IA, unsigned int n) {
 
 	int ti = threadIdx.x + blockIdx.x * blockDim.x;
 

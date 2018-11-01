@@ -26,7 +26,7 @@ namespace GANA {
 
 	// Helper function to get the indices of the true elements of a bool array.
 	// Optimized for large (>500) and sparse bool arrays.
-	void getIndicesFromSparseBoolArray(bool *in_array, const int n_in,
+	void get_indices_from_sparse_bool_array(bool *in_array, const int n_in,
 	std::vector<int> &indices);
 
 	// Template structure to pass to kernel
@@ -39,7 +39,7 @@ namespace GANA {
 
 	// Function to convert thrust::device_vector to Karray struct
 	template <typename T>
-	Karray<T> toKernel(thrust::device_vector<T>& Darray)
+	Karray<T> to_kernel(thrust::device_vector<T>& Darray)
 	{
 		Karray<T> KDarray;
 	    KDarray.array_ = thrust::raw_pointer_cast(Darray.data());

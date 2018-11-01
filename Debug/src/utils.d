@@ -1,6 +1,6 @@
 src/utils.o : ../src/utils.cpp \
     /usr/include/stdc-predef.h \
-    /home/pbarletta/labo/18/cuGANA/include/GANA/utils.hpp \
+    /home/pbarletta/labo/18/GANA/include/GANA/utils.hpp \
     /usr/include/c++/7/vector \
     /usr/include/c++/7/bits/stl_algobase.h \
     /usr/include/x86_64-linux-gnu/c++/7/bits/c++config.h \
