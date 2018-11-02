@@ -64,6 +64,10 @@ int main(int argc, char **argv) {
 	GANA::Triangulation incl_area(prote, indices);
 	incl_area.draw("aux/ia.pdb");
 
+//	float *lista_xyz;
+//	lista_ptos = (void**) malloc(lista_ptos, sizeof(f))
+//	incl_area._Dtetrahedrons
+
 	const dim3 dB0(1024, 1, 1);
 	const dim3 dG0(10, 1, 1);
 	empiezo<<<dG0, dB0>>>(incl_area._Dtetrahedrons, incl_area._ntetrahedrons);

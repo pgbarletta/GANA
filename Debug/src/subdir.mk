@@ -9,12 +9,14 @@ CU_SRCS += \
 CPP_SRCS += \
 ../src/continuous.cpp \
 ../src/grid.cpp \
+../src/primitives.cpp \
 ../src/utils.cpp 
 
 OBJS += \
 ./src/continuous.o \
 ./src/grid.o \
 ./src/main.o \
+./src/primitives.o \
 ./src/utils.o 
 
 CU_DEPS += \
@@ -23,6 +25,7 @@ CU_DEPS += \
 CPP_DEPS += \
 ./src/continuous.d \
 ./src/grid.d \
+./src/primitives.d \
 ./src/utils.d 
 
 

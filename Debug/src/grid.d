@@ -2172,4 +2172,5 @@ src/grid.o : ../src/grid.cpp \
     /home/pbarletta/chemfiles08/build/install/include/chemfiles/UnitCell.hpp \
     /home/pbarletta/chemfiles08/build/install/include/chemfiles/Trajectory.hpp \
     /home/pbarletta/chemfiles08/build/install/include/chemfiles/Selections.hpp \
-    /home/pbarletta/labo/18/GANA/include/GANA/utils.hpp
+    /home/pbarletta/labo/18/GANA/include/GANA/utils.hpp \
+    /home/pbarletta/labo/18/GANA/include/GANA/primitives.hpp
