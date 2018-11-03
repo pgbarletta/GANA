@@ -3,31 +3,36 @@ namespace GANA {
 
 // Helper function for getting the indices that sort a vector.
 template<typename T>
-std::vector<unsigned int> sort_indices(
-	const std::vector<T> &v) {
+auto sort_indices(std::vector<T> const &v) -> std::vector<int> {
+
 	// initialize original index locations
-	std::vector<unsigned int> idx(v.size());
+	std::vector<int> idx(v.size());
 	std::iota(idx.begin(), idx.end(), 0);
 
 	// sort indices based on comparing values in v
 	sort(idx.begin(), idx.end(),
-			[&v](unsigned int i1, unsigned int i2) {return v[i1] < v[i2];});
+			[&v](int i1, int i2) {return v[i1] < v[i2];});
 
 	return idx;
 }
 
 // Helper function to get the indices of the true elements of a bool array.
 // Optimized for large (>500) and sparse bool arrays.
-void get_indices_from_sparse_bool_array(
-	bool *in_array, const int n_in, std::vector<int> &indices) {
+auto get_indices_from_sparse_bool_array(bool const in_array[],
+		const int in_size) -> std::vector<int> {
 
-	auto sz_lo = sizeof(long);
-	long *cin_array = (long *) in_array;
-	int divi = n_in / sz_lo, resto = n_in % sz_lo;
+	long const *cin_array = (long *) in_array;
+	int const sz = in_size / sizeof(long);
+	int const resto = in_size % sizeof(long);
 
-	for (size_t i = 0; i < divi; ++i) {
+	std::vector<int> indices;
+	int const sum = std::accumulate(in_array, in_array+in_size, 0);
+	indices.reserve(sum);
+
+	for (size_t i = 0; i < sz; ++i) {
 		if (cin_array[i] != 0) {
-			size_t lo = i * sz_lo, hi = lo + sz_lo;
+			size_t const lo = i * sizeof(long);
+			size_t const hi = lo + sizeof(long);
 			for (size_t j = lo; j < hi; ++j) {
 				if (in_array[j] != 0) {
 					indices.push_back(j);
@@ -36,12 +41,12 @@ void get_indices_from_sparse_bool_array(
 		}
 	}
 
-	for (size_t i = n_in - resto; i < n_in; ++i) {
+	for (size_t i = in_size - resto; i < in_size; ++i) {
 		if (in_array[i] != 0) {
 			indices.push_back(i);
 		}
 	}
 
-	return;
+	return indices;
 }
 } // namespace GANA

@@ -26,7 +26,7 @@ namespace GANA {
             _xyz{cont_to_grid(p[0]), cont_to_grid(p[1]), cont_to_grid(p[2])} {}
 
         // Draw GridPoint as atom.
-        void draw(FILE *ou_fil, unsigned int idx, unsigned int resid);
+        void draw(FILE *ou_fil, int idx, int resid);
 
         // // Returns a vector starting on this point coordinates.
         // vector operator-(const point& p) const {
@@ -54,6 +54,8 @@ namespace GANA {
 
     class GridMolecule {
     public:
+        // GridMolecule() noexcept : _natoms(0), _orig_vtor(Vector(0.0f, 0.0f, 0.0f)),
+        //     _xyz(nullptr), _in_xyz(nullptr), _radii(nullptr), _in_radii(nullptr) {};
         GridMolecule() = default;
         GridMolecule(const Molecule &in_mol, const Point &orig_point);
 
@@ -66,10 +68,10 @@ namespace GANA {
 
         void draw(const std::string &ou_fil);
 
-        unsigned int _natoms;
-        Vector _orig_vtor;
-        GridPoint *_xyz, *_in_xyz;
-        float *_radii, *_in_radii;
+        int _natoms{0};
+        Vector _orig_vtor{0.0f, 0.0f, 0.0f};
+        GridPoint *_xyz = nullptr, *_in_xyz = nullptr;
+        float *_radii = nullptr, *_in_radii = nullptr;
     };
 
     class GridConvexHull {
@@ -83,7 +85,7 @@ namespace GANA {
 
         void draw(const std::string &ou_fil);
         
-        float *dots;
+        float *dots = nullptr;
     };
 
     class GridBool {

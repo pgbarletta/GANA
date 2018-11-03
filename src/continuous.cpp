@@ -8,7 +8,7 @@ using Finite_cells_iterator = Delaunay::Finite_cells_iterator;
 
 namespace GANA {
 
-Molecule::Molecule(const std::string &in_filename) {
+Molecule::Molecule(std::string const &in_filename) {
 	chemfiles::Trajectory in_trj(in_filename);
 	auto in_frm = in_trj.read();
 	auto in_top = in_frm.topology();
@@ -33,7 +33,7 @@ Molecule::Molecule(const std::string &in_filename) {
 }
 
 // Draw the molecule in the **out_file** path in PDB format.
-void Molecule::draw(const std::string &out_file) {
+void Molecule::draw(std::string const &out_file) {
 	
 	FILE *file = std::fopen(out_file.c_str(), "w");
 	if(file) {
@@ -48,15 +48,14 @@ void Molecule::draw(const std::string &out_file) {
 }
 
 ConvexHull::ConvexHull(
-	const Molecule &prote, const std::vector<unsigned int> &indices) {
+	Molecule const &prote, std::vector<int> const &indices) {
 
 	// Get the coordinates of the input indices atoms.
-	std::vector<Point_3> point_set;
-	get_point_set(prote, indices, point_set);
+	auto point_vtor = atom_indices_to_points(prote, indices);
 	
 	// Get the convex hull.
 	Polyhedron con_hul;
-	CGAL::convex_hull_3(point_set.begin(), point_set.end(), con_hul);
+	CGAL::convex_hull_3(point_vtor.begin(), point_vtor.end(), con_hul);
 
 	// Turn CGAL's polyhedron holding the convex hull into GANA triangles.
 	P_Facet_const_iterator f_ite = con_hul.facets_begin();
@@ -72,11 +71,11 @@ ConvexHull::ConvexHull(
 	}
 }
 
-void ConvexHull::draw(const std::string &out_file) {
+void ConvexHull::draw(std::string const &out_file) {
 	
 	FILE *file = std::fopen(out_file.c_str(), "w");
 	if(file) {
-		unsigned int resid = 1;
+		int resid = 1;
 		for (size_t i = 0 ; i < _ntriangles ; ++i) {
 			const auto start_idx = i * 3 + 1;
 			_triangles[i].draw(file, start_idx, resid++);
@@ -95,15 +94,14 @@ void ConvexHull::draw(const std::string &out_file) {
 }
 
 Triangulation::Triangulation(
-	Molecule const &prote, std::vector<unsigned int> const &indices) {
+	Molecule const &prote, std::vector<int> const &indices) {
 
 	// Get the coordinates of the input indices atoms.
-	std::vector<Point_3> point_set;
-	get_point_set(prote, indices, point_set);
+	auto point_vtor = atom_indices_to_points(prote, indices);
 	
 	// Get the convex hull.
 	Polyhedron con_hul;
-	CGAL::convex_hull_3(point_set.begin(), point_set.end(), con_hul);
+	CGAL::convex_hull_3(point_vtor.begin(), point_vtor.end(), con_hul);
 	
 	// Get the triangulation from the convex hull.
 	Delaunay T(con_hul.points_begin(), con_hul.points_end());
@@ -142,11 +140,11 @@ Triangulation::Triangulation(
 	return;
 }
 
-void Triangulation::draw(const std::string &out_file) {
+void Triangulation::draw(std::string const &out_file) {
 	
 	FILE *file = std::fopen(out_file.c_str(), "w");
 	if(file) {
-		unsigned int resid = 1;
+		int resid = 1;
 		for (size_t i = 0 ; i < _ntetrahedrons ; ++i) {
 			const auto start_idx = i * 4 + 1;
 			_tetrahedrons[i].draw(file, start_idx, resid++);

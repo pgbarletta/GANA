@@ -4,12 +4,12 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 CU_SRCS += \
-../src/main.cu 
+../src/main.cu \
+../src/primitives.cu 
 
 CPP_SRCS += \
 ../src/continuous.cpp \
 ../src/grid.cpp \
-../src/primitives.cpp \
 ../src/utils.cpp 
 
 OBJS += \
@@ -20,12 +20,12 @@ OBJS += \
 ./src/utils.o 
 
 CU_DEPS += \
-./src/main.d 
+./src/main.d \
+./src/primitives.d 
 
 CPP_DEPS += \
 ./src/continuous.d \
 ./src/grid.d \
-./src/primitives.d \
 ./src/utils.d 
 
 

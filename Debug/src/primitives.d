@@ -1,52 +1,88 @@
-src/primitives.o : ../src/primitives.cpp \
+src/primitives.o : ../src/primitives.cu \
     /usr/include/stdc-predef.h \
-    /home/pbarletta/labo/18/GANA/include/GANA/primitives.hpp \
-    /usr/include/CGAL/Exact_predicates_inexact_constructions_kernel.h \
-    /usr/include/CGAL/Simple_cartesian.h \
-    /usr/include/CGAL/Cartesian/Cartesian_base.h \
-    /usr/include/CGAL/basic.h \
-    /usr/include/CGAL/config.h \
-    /usr/include/boost/config.hpp \
-    /usr/include/boost/config/user.hpp \
-    /usr/include/boost/config/detail/select_compiler_config.hpp \
-    /usr/include/boost/config/compiler/gcc.hpp \
-    /usr/include/c++/7/cstddef \
-    /usr/include/x86_64-linux-gnu/c++/7/bits/c++config.h \
-    /usr/include/x86_64-linux-gnu/c++/7/bits/os_defines.h \
+    /usr/local/cuda-10.0/bin/../targets/x86_64-linux/include/cuda_runtime.h \
+    /usr/local/cuda-10.0/bin/../targets/x86_64-linux/include/crt/host_config.h \
     /usr/include/features.h \
     /usr/include/x86_64-linux-gnu/sys/cdefs.h \
     /usr/include/x86_64-linux-gnu/bits/wordsize.h \
     /usr/include/x86_64-linux-gnu/bits/long-double.h \
     /usr/include/x86_64-linux-gnu/gnu/stubs.h \
     /usr/include/x86_64-linux-gnu/gnu/stubs-64.h \
-    /usr/include/x86_64-linux-gnu/c++/7/bits/cpu_defines.h \
+    /usr/local/cuda-10.0/bin/../targets/x86_64-linux/include/builtin_types.h \
+    /usr/local/cuda-10.0/bin/../targets/x86_64-linux/include/device_types.h \
+    /usr/local/cuda-10.0/bin/../targets/x86_64-linux/include/crt/host_defines.h \
+    /usr/local/cuda-10.0/bin/../targets/x86_64-linux/include/driver_types.h \
+    /usr/local/cuda-10.0/bin/../targets/x86_64-linux/include/vector_types.h \
+    /usr/lib/gcc/x86_64-linux-gnu/7/include-fixed/limits.h \
+    /usr/lib/gcc/x86_64-linux-gnu/7/include-fixed/syslimits.h \
+    /usr/include/limits.h \
+    /usr/include/x86_64-linux-gnu/bits/libc-header-start.h \
+    /usr/include/x86_64-linux-gnu/bits/posix1_lim.h \
+    /usr/include/x86_64-linux-gnu/bits/local_lim.h \
+    /usr/include/linux/limits.h \
+    /usr/include/x86_64-linux-gnu/bits/posix2_lim.h \
+    /usr/include/x86_64-linux-gnu/bits/xopen_lim.h \
+    /usr/include/x86_64-linux-gnu/bits/uio_lim.h \
     /usr/lib/gcc/x86_64-linux-gnu/7/include/stddef.h \
-    /usr/include/boost/config/detail/select_stdlib_config.hpp \
-    /usr/include/boost/config/stdlib/libstdcpp3.hpp \
-    /usr/include/unistd.h \
-    /usr/include/x86_64-linux-gnu/bits/posix_opt.h \
-    /usr/include/x86_64-linux-gnu/bits/environments.h \
+    /usr/local/cuda-10.0/bin/../targets/x86_64-linux/include/surface_types.h \
+    /usr/local/cuda-10.0/bin/../targets/x86_64-linux/include/texture_types.h \
+    /usr/local/cuda-10.0/bin/../targets/x86_64-linux/include/library_types.h \
+    /usr/local/cuda-10.0/bin/../targets/x86_64-linux/include/channel_descriptor.h \
+    /usr/local/cuda-10.0/bin/../targets/x86_64-linux/include/cuda_runtime_api.h \
+    /usr/local/cuda-10.0/bin/../targets/x86_64-linux/include/cuda_device_runtime_api.h \
+    /usr/local/cuda-10.0/bin/../targets/x86_64-linux/include/driver_functions.h \
+    /usr/local/cuda-10.0/bin/../targets/x86_64-linux/include/vector_functions.h \
+    /usr/local/cuda-10.0/bin/../targets/x86_64-linux/include/vector_functions.hpp \
+    /usr/local/cuda-10.0/bin/../targets/x86_64-linux/include/crt/common_functions.h \
+    /usr/include/string.h \
+    /usr/include/x86_64-linux-gnu/bits/types/locale_t.h \
+    /usr/include/x86_64-linux-gnu/bits/types/__locale_t.h \
+    /usr/include/strings.h \
+    /usr/include/time.h \
+    /usr/include/x86_64-linux-gnu/bits/time.h \
     /usr/include/x86_64-linux-gnu/bits/types.h \
     /usr/include/x86_64-linux-gnu/bits/typesizes.h \
-    /usr/include/x86_64-linux-gnu/bits/confname.h \
-    /usr/include/x86_64-linux-gnu/bits/getopt_posix.h \
-    /usr/include/x86_64-linux-gnu/bits/getopt_core.h \
-    /usr/include/boost/config/detail/select_platform_config.hpp \
-    /usr/include/boost/config/platform/linux.hpp \
+    /usr/include/x86_64-linux-gnu/bits/timex.h \
+    /usr/include/x86_64-linux-gnu/bits/types/struct_timeval.h \
+    /usr/include/x86_64-linux-gnu/bits/types/clock_t.h \
+    /usr/include/x86_64-linux-gnu/bits/types/time_t.h \
+    /usr/include/x86_64-linux-gnu/bits/types/struct_tm.h \
+    /usr/include/x86_64-linux-gnu/bits/types/struct_timespec.h \
+    /usr/include/x86_64-linux-gnu/bits/types/clockid_t.h \
+    /usr/include/x86_64-linux-gnu/bits/types/timer_t.h \
+    /usr/include/x86_64-linux-gnu/bits/types/struct_itimerspec.h \
+    /usr/include/c++/7/new \
+    /usr/include/x86_64-linux-gnu/c++/7/bits/c++config.h \
+    /usr/include/x86_64-linux-gnu/c++/7/bits/os_defines.h \
+    /usr/include/x86_64-linux-gnu/c++/7/bits/cpu_defines.h \
+    /usr/include/c++/7/exception \
+    /usr/include/c++/7/bits/exception.h \
+    /usr/include/c++/7/bits/exception_ptr.h \
+    /usr/include/c++/7/bits/exception_defines.h \
+    /usr/include/c++/7/bits/cxxabi_init_exception.h \
+    /usr/include/c++/7/typeinfo \
+    /usr/include/c++/7/bits/hash_bytes.h \
+    /usr/include/c++/7/bits/nested_exception.h \
+    /usr/include/c++/7/bits/move.h \
+    /usr/include/c++/7/bits/concept_check.h \
+    /usr/include/c++/7/type_traits \
+    /usr/include/stdio.h \
+    /usr/include/x86_64-linux-gnu/bits/types/__FILE.h \
+    /usr/include/x86_64-linux-gnu/bits/types/FILE.h \
+    /usr/include/x86_64-linux-gnu/bits/libio.h \
+    /usr/include/x86_64-linux-gnu/bits/_G_config.h \
+    /usr/include/x86_64-linux-gnu/bits/types/__mbstate_t.h \
+    /usr/lib/gcc/x86_64-linux-gnu/7/include/stdarg.h \
+    /usr/include/x86_64-linux-gnu/bits/stdio_lim.h \
+    /usr/include/x86_64-linux-gnu/bits/sys_errlist.h \
+    /usr/include/c++/7/stdlib.h \
     /usr/include/c++/7/cstdlib \
     /usr/include/stdlib.h \
-    /usr/include/x86_64-linux-gnu/bits/libc-header-start.h \
     /usr/include/x86_64-linux-gnu/bits/waitflags.h \
     /usr/include/x86_64-linux-gnu/bits/waitstatus.h \
     /usr/include/x86_64-linux-gnu/bits/floatn.h \
     /usr/include/x86_64-linux-gnu/bits/floatn-common.h \
-    /usr/include/x86_64-linux-gnu/bits/types/locale_t.h \
-    /usr/include/x86_64-linux-gnu/bits/types/__locale_t.h \
     /usr/include/x86_64-linux-gnu/sys/types.h \
-    /usr/include/x86_64-linux-gnu/bits/types/clock_t.h \
-    /usr/include/x86_64-linux-gnu/bits/types/clockid_t.h \
-    /usr/include/x86_64-linux-gnu/bits/types/time_t.h \
-    /usr/include/x86_64-linux-gnu/bits/types/timer_t.h \
     /usr/include/x86_64-linux-gnu/bits/stdint-intn.h \
     /usr/include/endian.h \
     /usr/include/x86_64-linux-gnu/bits/endian.h \
@@ -57,8 +93,6 @@ src/primitives.o : ../src/primitives.cpp \
     /usr/include/x86_64-linux-gnu/bits/select.h \
     /usr/include/x86_64-linux-gnu/bits/types/sigset_t.h \
     /usr/include/x86_64-linux-gnu/bits/types/__sigset_t.h \
-    /usr/include/x86_64-linux-gnu/bits/types/struct_timeval.h \
-    /usr/include/x86_64-linux-gnu/bits/types/struct_timespec.h \
     /usr/include/x86_64-linux-gnu/sys/sysmacros.h \
     /usr/include/x86_64-linux-gnu/bits/sysmacros.h \
     /usr/include/x86_64-linux-gnu/bits/pthreadtypes.h \
@@ -67,6 +101,75 @@ src/primitives.o : ../src/primitives.cpp \
     /usr/include/alloca.h \
     /usr/include/x86_64-linux-gnu/bits/stdlib-float.h \
     /usr/include/c++/7/bits/std_abs.h \
+    /usr/include/assert.h \
+    /usr/local/cuda-10.0/bin/../targets/x86_64-linux/include/crt/math_functions.h \
+    /usr/include/c++/7/math.h \
+    /usr/include/c++/7/cmath \
+    /usr/include/c++/7/bits/cpp_type_traits.h \
+    /usr/include/c++/7/ext/type_traits.h \
+    /usr/include/math.h \
+    /usr/include/x86_64-linux-gnu/bits/math-vector.h \
+    /usr/include/x86_64-linux-gnu/bits/libm-simd-decl-stubs.h \
+    /usr/include/x86_64-linux-gnu/bits/flt-eval-method.h \
+    /usr/include/x86_64-linux-gnu/bits/fp-logb.h \
+    /usr/include/x86_64-linux-gnu/bits/fp-fast.h \
+    /usr/include/x86_64-linux-gnu/bits/mathcalls-helper-functions.h \
+    /usr/include/x86_64-linux-gnu/bits/mathcalls.h \
+    /usr/include/x86_64-linux-gnu/bits/iscanonical.h \
+    /usr/local/cuda-10.0/bin/../targets/x86_64-linux/include/crt/math_functions.hpp \
+    /usr/local/cuda-10.0/bin/../targets/x86_64-linux/include/cuda_surface_types.h \
+    /usr/local/cuda-10.0/bin/../targets/x86_64-linux/include/cuda_texture_types.h \
+    /usr/local/cuda-10.0/bin/../targets/x86_64-linux/include/crt/device_functions.h \
+    /usr/local/cuda-10.0/bin/../targets/x86_64-linux/include/crt/device_functions.hpp \
+    /usr/local/cuda-10.0/bin/../targets/x86_64-linux/include/device_atomic_functions.h \
+    /usr/local/cuda-10.0/bin/../targets/x86_64-linux/include/device_atomic_functions.hpp \
+    /usr/local/cuda-10.0/bin/../targets/x86_64-linux/include/crt/device_double_functions.h \
+    /usr/local/cuda-10.0/bin/../targets/x86_64-linux/include/crt/device_double_functions.hpp \
+    /usr/local/cuda-10.0/bin/../targets/x86_64-linux/include/sm_20_atomic_functions.h \
+    /usr/local/cuda-10.0/bin/../targets/x86_64-linux/include/sm_20_atomic_functions.hpp \
+    /usr/local/cuda-10.0/bin/../targets/x86_64-linux/include/sm_32_atomic_functions.h \
+    /usr/local/cuda-10.0/bin/../targets/x86_64-linux/include/sm_32_atomic_functions.hpp \
+    /usr/local/cuda-10.0/bin/../targets/x86_64-linux/include/sm_35_atomic_functions.h \
+    /usr/local/cuda-10.0/bin/../targets/x86_64-linux/include/sm_60_atomic_functions.h \
+    /usr/local/cuda-10.0/bin/../targets/x86_64-linux/include/sm_60_atomic_functions.hpp \
+    /usr/local/cuda-10.0/bin/../targets/x86_64-linux/include/sm_20_intrinsics.h \
+    /usr/local/cuda-10.0/bin/../targets/x86_64-linux/include/sm_20_intrinsics.hpp \
+    /usr/local/cuda-10.0/bin/../targets/x86_64-linux/include/sm_30_intrinsics.h \
+    /usr/local/cuda-10.0/bin/../targets/x86_64-linux/include/sm_30_intrinsics.hpp \
+    /usr/local/cuda-10.0/bin/../targets/x86_64-linux/include/sm_32_intrinsics.h \
+    /usr/local/cuda-10.0/bin/../targets/x86_64-linux/include/sm_32_intrinsics.hpp \
+    /usr/local/cuda-10.0/bin/../targets/x86_64-linux/include/sm_35_intrinsics.h \
+    /usr/local/cuda-10.0/bin/../targets/x86_64-linux/include/sm_61_intrinsics.h \
+    /usr/local/cuda-10.0/bin/../targets/x86_64-linux/include/sm_61_intrinsics.hpp \
+    /usr/local/cuda-10.0/bin/../targets/x86_64-linux/include/crt/sm_70_rt.h \
+    /usr/local/cuda-10.0/bin/../targets/x86_64-linux/include/crt/sm_70_rt.hpp \
+    /usr/local/cuda-10.0/bin/../targets/x86_64-linux/include/surface_functions.h \
+    /usr/local/cuda-10.0/bin/../targets/x86_64-linux/include/texture_fetch_functions.h \
+    /usr/local/cuda-10.0/bin/../targets/x86_64-linux/include/texture_indirect_functions.h \
+    /usr/local/cuda-10.0/bin/../targets/x86_64-linux/include/surface_indirect_functions.h \
+    /usr/local/cuda-10.0/bin/../targets/x86_64-linux/include/device_launch_parameters.h \
+    /home/pbarletta/labo/18/GANA/include/GANA/primitives.cuh \
+    /usr/include/CGAL/Exact_predicates_inexact_constructions_kernel.h \
+    /usr/include/CGAL/Simple_cartesian.h \
+    /usr/include/CGAL/Cartesian/Cartesian_base.h \
+    /usr/include/CGAL/basic.h \
+    /usr/include/CGAL/config.h \
+    /usr/include/boost/config.hpp \
+    /usr/include/boost/config/user.hpp \
+    /usr/include/boost/config/detail/select_compiler_config.hpp \
+    /usr/include/boost/config/compiler/nvcc.hpp \
+    /usr/include/boost/config/compiler/gcc.hpp \
+    /usr/include/c++/7/cstddef \
+    /usr/include/boost/config/detail/select_stdlib_config.hpp \
+    /usr/include/boost/config/stdlib/libstdcpp3.hpp \
+    /usr/include/unistd.h \
+    /usr/include/x86_64-linux-gnu/bits/posix_opt.h \
+    /usr/include/x86_64-linux-gnu/bits/environments.h \
+    /usr/include/x86_64-linux-gnu/bits/confname.h \
+    /usr/include/x86_64-linux-gnu/bits/getopt_posix.h \
+    /usr/include/x86_64-linux-gnu/bits/getopt_core.h \
+    /usr/include/boost/config/detail/select_platform_config.hpp \
+    /usr/include/boost/config/platform/linux.hpp \
     /usr/include/boost/config/detail/posix_features.hpp \
     /usr/include/boost/config/detail/suffix.hpp \
     /usr/include/boost/version.hpp \
@@ -86,7 +189,6 @@ src/primitives.o : ../src/primitives.cpp \
     /usr/include/boost/move/detail/meta_utils_core.hpp \
     /usr/include/boost/move/detail/config_end.hpp \
     /usr/include/boost/assert.hpp \
-    /usr/include/assert.h \
     /usr/include/boost/static_assert.hpp \
     /usr/include/boost/detail/workaround.hpp \
     /usr/include/boost/config/workaround.hpp \
@@ -107,26 +209,12 @@ src/primitives.o : ../src/primitives.cpp \
     /usr/include/boost/container/new_allocator.hpp \
     /usr/include/boost/container/throw_exception.hpp \
     /usr/include/c++/7/stdexcept \
-    /usr/include/c++/7/exception \
-    /usr/include/c++/7/bits/exception.h \
-    /usr/include/c++/7/bits/exception_ptr.h \
-    /usr/include/c++/7/bits/exception_defines.h \
-    /usr/include/c++/7/bits/cxxabi_init_exception.h \
-    /usr/include/c++/7/typeinfo \
-    /usr/include/c++/7/bits/hash_bytes.h \
-    /usr/include/c++/7/new \
-    /usr/include/c++/7/bits/nested_exception.h \
-    /usr/include/c++/7/bits/move.h \
-    /usr/include/c++/7/bits/concept_check.h \
-    /usr/include/c++/7/type_traits \
     /usr/include/c++/7/string \
     /usr/include/c++/7/bits/stringfwd.h \
     /usr/include/c++/7/bits/memoryfwd.h \
     /usr/include/c++/7/bits/char_traits.h \
     /usr/include/c++/7/bits/stl_algobase.h \
     /usr/include/c++/7/bits/functexcept.h \
-    /usr/include/c++/7/bits/cpp_type_traits.h \
-    /usr/include/c++/7/ext/type_traits.h \
     /usr/include/c++/7/ext/numeric_traits.h \
     /usr/include/c++/7/bits/stl_pair.h \
     /usr/include/c++/7/bits/stl_iterator_base_types.h \
@@ -139,13 +227,9 @@ src/primitives.o : ../src/primitives.cpp \
     /usr/include/c++/7/bits/postypes.h \
     /usr/include/c++/7/cwchar \
     /usr/include/wchar.h \
-    /usr/lib/gcc/x86_64-linux-gnu/7/include/stdarg.h \
     /usr/include/x86_64-linux-gnu/bits/wchar.h \
     /usr/include/x86_64-linux-gnu/bits/types/wint_t.h \
     /usr/include/x86_64-linux-gnu/bits/types/mbstate_t.h \
-    /usr/include/x86_64-linux-gnu/bits/types/__mbstate_t.h \
-    /usr/include/x86_64-linux-gnu/bits/types/__FILE.h \
-    /usr/include/x86_64-linux-gnu/bits/types/FILE.h \
     /usr/include/c++/7/cstdint \
     /usr/lib/gcc/x86_64-linux-gnu/7/include/stdint.h \
     /usr/include/stdint.h \
@@ -175,22 +259,12 @@ src/primitives.o : ../src/primitives.cpp \
     /usr/include/sched.h \
     /usr/include/x86_64-linux-gnu/bits/sched.h \
     /usr/include/x86_64-linux-gnu/bits/cpu-set.h \
-    /usr/include/time.h \
-    /usr/include/x86_64-linux-gnu/bits/time.h \
-    /usr/include/x86_64-linux-gnu/bits/timex.h \
-    /usr/include/x86_64-linux-gnu/bits/types/struct_tm.h \
-    /usr/include/x86_64-linux-gnu/bits/types/struct_itimerspec.h \
     /usr/include/x86_64-linux-gnu/bits/setjmp.h \
     /usr/include/x86_64-linux-gnu/c++/7/bits/atomic_word.h \
     /usr/include/c++/7/ext/alloc_traits.h \
     /usr/include/c++/7/bits/alloc_traits.h \
     /usr/include/c++/7/ext/string_conversions.h \
     /usr/include/c++/7/cstdio \
-    /usr/include/stdio.h \
-    /usr/include/x86_64-linux-gnu/bits/libio.h \
-    /usr/include/x86_64-linux-gnu/bits/_G_config.h \
-    /usr/include/x86_64-linux-gnu/bits/stdio_lim.h \
-    /usr/include/x86_64-linux-gnu/bits/sys_errlist.h \
     /usr/include/c++/7/cerrno \
     /usr/include/errno.h \
     /usr/include/x86_64-linux-gnu/bits/errno.h \
@@ -221,8 +295,6 @@ src/primitives.o : ../src/primitives.cpp \
     /usr/include/boost/move/iterator.hpp \
     /usr/include/boost/core/no_exceptions_support.hpp \
     /usr/include/c++/7/cstring \
-    /usr/include/string.h \
-    /usr/include/strings.h \
     /usr/include/boost/container/detail/destroyers.hpp \
     /usr/include/boost/container/detail/version_type.hpp \
     /usr/include/boost/container/detail/algorithm.hpp \
@@ -692,15 +764,6 @@ src/primitives.o : ../src/primitives.cpp \
     /usr/include/c++/7/cfloat \
     /usr/lib/gcc/x86_64-linux-gnu/7/include/float.h \
     /usr/include/x86_64-linux-gnu/gmp.h \
-    /usr/lib/gcc/x86_64-linux-gnu/7/include-fixed/limits.h \
-    /usr/lib/gcc/x86_64-linux-gnu/7/include-fixed/syslimits.h \
-    /usr/include/limits.h \
-    /usr/include/x86_64-linux-gnu/bits/posix1_lim.h \
-    /usr/include/x86_64-linux-gnu/bits/local_lim.h \
-    /usr/include/linux/limits.h \
-    /usr/include/x86_64-linux-gnu/bits/posix2_lim.h \
-    /usr/include/x86_64-linux-gnu/bits/xopen_lim.h \
-    /usr/include/x86_64-linux-gnu/bits/uio_lim.h \
     /usr/include/CGAL/Scalar_factor_traits.h \
     /usr/include/CGAL/Algebraic_extension_traits.h \
     /usr/include/c++/7/numeric \
@@ -711,28 +774,16 @@ src/primitives.o : ../src/primitives.cpp \
     /usr/include/CGAL/utils_classes.h \
     /usr/include/CGAL/utils.h \
     /usr/include/CGAL/FPU.h \
-    /usr/include/c++/7/cmath \
-    /usr/include/math.h \
-    /usr/include/x86_64-linux-gnu/bits/math-vector.h \
-    /usr/include/x86_64-linux-gnu/bits/libm-simd-decl-stubs.h \
-    /usr/include/x86_64-linux-gnu/bits/flt-eval-method.h \
-    /usr/include/x86_64-linux-gnu/bits/fp-logb.h \
-    /usr/include/x86_64-linux-gnu/bits/fp-fast.h \
-    /usr/include/x86_64-linux-gnu/bits/mathcalls-helper-functions.h \
-    /usr/include/x86_64-linux-gnu/bits/mathcalls.h \
-    /usr/include/x86_64-linux-gnu/bits/iscanonical.h \
     /usr/include/c++/7/fenv.h \
     /usr/include/fenv.h \
     /usr/include/x86_64-linux-gnu/bits/fenv.h \
     /usr/lib/gcc/x86_64-linux-gnu/7/include/xmmintrin.h \
     /usr/lib/gcc/x86_64-linux-gnu/7/include/mmintrin.h \
     /usr/lib/gcc/x86_64-linux-gnu/7/include/mm_malloc.h \
-    /usr/include/c++/7/stdlib.h \
     /usr/lib/gcc/x86_64-linux-gnu/7/include/emmintrin.h \
     /usr/include/CGAL/float.h \
     /usr/include/CGAL/double.h \
     /usr/include/CGAL/number_utils.h \
-    /usr/include/c++/7/math.h \
     /usr/include/CGAL/long_double.h \
     /usr/include/CGAL/Interval_nt.h \
     /usr/include/CGAL/Interval_traits.h \
@@ -1435,7 +1486,6 @@ src/primitives.o : ../src/primitives.cpp \
     /usr/include/boost/type_traits/has_multiplies.hpp \
     /usr/include/boost/type_traits/has_multiplies_assign.hpp \
     /usr/include/boost/type_traits/has_negate.hpp \
-    /usr/include/boost/type_traits/has_new_operator.hpp \
     /usr/include/boost/type_traits/has_not_equal_to.hpp \
     /usr/include/boost/type_traits/has_nothrow_destructor.hpp \
     /usr/include/boost/type_traits/has_post_decrement.hpp \
@@ -1475,19 +1525,8 @@ src/primitives.o : ../src/primitives.cpp \
     /usr/include/boost/type_traits/promote.hpp \
     /usr/include/CGAL/Triangulation_structural_filtering_traits.h \
     /usr/local/cuda-10.0/bin/../targets/x86_64-linux/include/cuda.h \
-    /usr/local/cuda-10.0/bin/../targets/x86_64-linux/include/cuda_runtime.h \
-    /usr/local/cuda-10.0/bin/../targets/x86_64-linux/include/crt/host_config.h \
-    /usr/local/cuda-10.0/bin/../targets/x86_64-linux/include/builtin_types.h \
-    /usr/local/cuda-10.0/bin/../targets/x86_64-linux/include/device_types.h \
-    /usr/local/cuda-10.0/bin/../targets/x86_64-linux/include/crt/host_defines.h \
-    /usr/local/cuda-10.0/bin/../targets/x86_64-linux/include/driver_types.h \
-    /usr/local/cuda-10.0/bin/../targets/x86_64-linux/include/vector_types.h \
-    /usr/local/cuda-10.0/bin/../targets/x86_64-linux/include/surface_types.h \
-    /usr/local/cuda-10.0/bin/../targets/x86_64-linux/include/texture_types.h \
-    /usr/local/cuda-10.0/bin/../targets/x86_64-linux/include/library_types.h \
-    /usr/local/cuda-10.0/bin/../targets/x86_64-linux/include/channel_descriptor.h \
-    /usr/local/cuda-10.0/bin/../targets/x86_64-linux/include/cuda_runtime_api.h \
-    /usr/local/cuda-10.0/bin/../targets/x86_64-linux/include/cuda_device_runtime_api.h \
-    /usr/local/cuda-10.0/bin/../targets/x86_64-linux/include/driver_functions.h \
-    /usr/local/cuda-10.0/bin/../targets/x86_64-linux/include/vector_functions.h \
-    /usr/local/cuda-10.0/bin/../targets/x86_64-linux/include/vector_functions.hpp
+    /usr/local/fmt-5.2.1/include/fmt/format.h \
+    /usr/local/fmt-5.2.1/include/fmt/core.h \
+    /usr/include/c++/7/experimental/string_view \
+    /usr/include/c++/7/experimental/bits/lfts_config.h \
+    /usr/include/c++/7/experimental/bits/string_view.tcc

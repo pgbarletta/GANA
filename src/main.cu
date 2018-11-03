@@ -19,7 +19,7 @@ int main(int argc, char **argv) {
 		return 0;
 	}
 
-	std::vector<unsigned int> indices = {300, 600, 900, 1200, 1500, 1800, 1240,
+	std::vector<int> indices = {300, 600, 900, 1200, 1500, 1800, 1240,
 		400, 500, 700, 800, 1000, 1100};
 	///////////
 

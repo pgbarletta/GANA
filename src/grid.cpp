@@ -2,7 +2,7 @@
 namespace GANA {
 
 // Draw GridPoint as atom.
-void GridPoint::draw(FILE *ou_fil, unsigned int idx, unsigned int resid) {
+void GridPoint::draw(FILE *ou_fil, int idx, int resid) {
     const float fx = grid_to_cont(_xyz[0]);
     const float fy = grid_to_cont(_xyz[1]);
     const float fz = grid_to_cont(_xyz[2]);

@@ -222,6 +222,30 @@ src/main.o : ../src/main.cu \
     /usr/include/asm-generic/errno-base.h \
     /usr/include/c++/7/bits/basic_string.tcc \
     /home/pbarletta/labo/18/GANA/include/GANA/utils.hpp \
+    /usr/include/c++/7/iterator \
+    /usr/include/c++/7/ostream \
+    /usr/include/c++/7/ios \
+    /usr/include/c++/7/bits/ios_base.h \
+    /usr/include/c++/7/bits/locale_classes.h \
+    /usr/include/c++/7/bits/locale_classes.tcc \
+    /usr/include/c++/7/system_error \
+    /usr/include/x86_64-linux-gnu/c++/7/bits/error_constants.h \
+    /usr/include/c++/7/streambuf \
+    /usr/include/c++/7/bits/streambuf.tcc \
+    /usr/include/c++/7/bits/basic_ios.h \
+    /usr/include/c++/7/bits/locale_facets.h \
+    /usr/include/c++/7/cwctype \
+    /usr/include/wctype.h \
+    /usr/include/x86_64-linux-gnu/bits/wctype-wchar.h \
+    /usr/include/x86_64-linux-gnu/c++/7/bits/ctype_base.h \
+    /usr/include/c++/7/bits/streambuf_iterator.h \
+    /usr/include/x86_64-linux-gnu/c++/7/bits/ctype_inline.h \
+    /usr/include/c++/7/bits/locale_facets.tcc \
+    /usr/include/c++/7/bits/basic_ios.tcc \
+    /usr/include/c++/7/bits/ostream.tcc \
+    /usr/include/c++/7/istream \
+    /usr/include/c++/7/bits/istream.tcc \
+    /usr/include/c++/7/bits/stream_iterator.h \
     /usr/include/c++/7/algorithm \
     /usr/include/c++/7/utility \
     /usr/include/c++/7/bits/stl_relops.h \
@@ -255,30 +279,6 @@ src/main.o : ../src/main.cu \
     /usr/local/cuda-10.0/bin/../targets/x86_64-linux/include/thrust/detail/type_traits/is_metafunction_defined.h \
     /usr/local/cuda-10.0/bin/../targets/x86_64-linux/include/thrust/detail/type_traits/has_nested_type.h \
     /usr/local/cuda-10.0/bin/../targets/x86_64-linux/include/thrust/iterator/iterator_traits.h \
-    /usr/include/c++/7/iterator \
-    /usr/include/c++/7/ostream \
-    /usr/include/c++/7/ios \
-    /usr/include/c++/7/bits/ios_base.h \
-    /usr/include/c++/7/bits/locale_classes.h \
-    /usr/include/c++/7/bits/locale_classes.tcc \
-    /usr/include/c++/7/system_error \
-    /usr/include/x86_64-linux-gnu/c++/7/bits/error_constants.h \
-    /usr/include/c++/7/streambuf \
-    /usr/include/c++/7/bits/streambuf.tcc \
-    /usr/include/c++/7/bits/basic_ios.h \
-    /usr/include/c++/7/bits/locale_facets.h \
-    /usr/include/c++/7/cwctype \
-    /usr/include/wctype.h \
-    /usr/include/x86_64-linux-gnu/bits/wctype-wchar.h \
-    /usr/include/x86_64-linux-gnu/c++/7/bits/ctype_base.h \
-    /usr/include/c++/7/bits/streambuf_iterator.h \
-    /usr/include/x86_64-linux-gnu/c++/7/bits/ctype_inline.h \
-    /usr/include/c++/7/bits/locale_facets.tcc \
-    /usr/include/c++/7/bits/basic_ios.tcc \
-    /usr/include/c++/7/bits/ostream.tcc \
-    /usr/include/c++/7/istream \
-    /usr/include/c++/7/bits/istream.tcc \
-    /usr/include/c++/7/bits/stream_iterator.h \
     /usr/local/cuda-10.0/bin/../targets/x86_64-linux/include/thrust/iterator/detail/iterator_traversal_tags.h \
     /usr/local/cuda-10.0/bin/../targets/x86_64-linux/include/thrust/iterator/detail/host_system_tag.h \
     /usr/local/cuda-10.0/bin/../targets/x86_64-linux/include/thrust/system/cpp/detail/execution_policy.h \
@@ -2419,11 +2419,11 @@ src/main.o : ../src/main.cu \
     /home/pbarletta/chemfiles08/build/install/include/chemfiles/UnitCell.hpp \
     /home/pbarletta/chemfiles08/build/install/include/chemfiles/Trajectory.hpp \
     /home/pbarletta/chemfiles08/build/install/include/chemfiles/Selections.hpp \
+    /home/pbarletta/labo/18/GANA/include/GANA/primitives.cuh \
     /usr/local/fmt-5.2.1/include/fmt/format.h \
     /usr/local/fmt-5.2.1/include/fmt/core.h \
     /usr/include/c++/7/experimental/string_view \
     /usr/include/c++/7/experimental/bits/lfts_config.h \
     /usr/include/c++/7/experimental/bits/string_view.tcc \
-    /home/pbarletta/labo/18/GANA/include/GANA/primitives.hpp \
     /home/pbarletta/labo/18/GANA/include/GANA/grid.hpp \
     /home/pbarletta/labo/18/GANA/include/GANA/kernels.cu

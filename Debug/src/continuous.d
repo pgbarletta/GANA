@@ -2166,13 +2166,13 @@ src/continuous.o : ../src/continuous.cpp \
     /home/pbarletta/chemfiles08/build/install/include/chemfiles/UnitCell.hpp \
     /home/pbarletta/chemfiles08/build/install/include/chemfiles/Trajectory.hpp \
     /home/pbarletta/chemfiles08/build/install/include/chemfiles/Selections.hpp \
+    /home/pbarletta/labo/18/GANA/include/GANA/utils.hpp \
+    /home/pbarletta/labo/18/GANA/include/GANA/primitives.cuh \
     /usr/local/fmt-5.2.1/include/fmt/format.h \
     /usr/local/fmt-5.2.1/include/fmt/core.h \
     /usr/include/c++/7/experimental/string_view \
     /usr/include/c++/7/experimental/bits/lfts_config.h \
     /usr/include/c++/7/experimental/bits/string_view.tcc \
-    /home/pbarletta/labo/18/GANA/include/GANA/utils.hpp \
-    /home/pbarletta/labo/18/GANA/include/GANA/primitives.hpp \
     /usr/include/CGAL/Delaunay_triangulation_3.h \
     /usr/include/CGAL/license/Triangulation_3.h \
     /usr/include/CGAL/Triangulation_3.h \
